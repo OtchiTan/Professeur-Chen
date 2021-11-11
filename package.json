@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/OtchiTan/Professeur-Chen#readme",
   "dependencies": {
+    "discord-akairo": "github:discord-akairo/discord-akairo",
     "discord.js": "^13.3.1",
-    "dotenv": "^10.0.0",
     "mongoose": "^6.0.12",
     "nodemon": "^2.0.15"
   }

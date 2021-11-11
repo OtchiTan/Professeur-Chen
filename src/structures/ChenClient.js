@@ -1,4 +1,4 @@
-const { AkairoClient, CommandHandler } = require('discord-akairo')
+const { AkairoClient, CommandHandler, ListenerHandler } = require('discord-akairo')
 const config = require('../../config.json')
 
 module.exports = class ChenClient extends AkairoClient {
@@ -27,9 +27,15 @@ module.exports = class ChenClient extends AkairoClient {
             allowMention:true,
             prefix: config.prefix,
             defaultCooldown:2000,
-            directory: './src/commands/'
+            directory: './commands/'
         })
 
+        this.listenerHandler = new ListenerHandler(this, {
+            directory: './listeners/'
+        })
+
+        this.commandHandler.useListenerHandler(this.listenerHandler)
+        this.listenerHandler.loadAll()
         this.commandHandler.loadAll()
     }
 }
