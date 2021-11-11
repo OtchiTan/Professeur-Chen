@@ -1,0 +1,26 @@
+{
+  "name": "professeur-chen",
+  "version": "1.0.0",
+  "description": "Professeur Chen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OtchiTan/Professeur-Chen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OtchiTan/Professeur-Chen/issues"
+  },
+  "homepage": "https://github.com/OtchiTan/Professeur-Chen#readme",
+  "dependencies": {
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.15"
+  }
+}
