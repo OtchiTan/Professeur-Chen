@@ -1,5 +1,4 @@
 const { AkairoClient, CommandHandler, ListenerHandler } = require('discord-akairo')
-const config = require('../../config.json')
 
 module.exports = class ChenClient extends AkairoClient {
     constructor (config = {}) {

@@ -1,8 +1,9 @@
 const ChenClient = require('./structures/ChenClient')
-const config = require('../config.json')
+const env = require('./utils/env')
+const config = require('./utils/config')
 
 const client = new ChenClient({
-    prefix:'+'
+    prefix:config.prefix
 })
 
-client.login(config.token)
+client.login(env.token)

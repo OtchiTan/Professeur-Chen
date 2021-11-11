@@ -1,4 +1,5 @@
 const { Command } = require('discord-akairo');
+const { MessageEmbed } = require('discord.js');
 
 class Embed extends Command {
     constructor() {
@@ -8,7 +9,12 @@ class Embed extends Command {
     }
 
     exec(message) {
-        return message.reply('Sah, quel aide');
+        let embed = new MessageEmbed()
+            .setTitle('Titre de l\'embed')
+            .setDescription('Description de l\'embed')
+            .setColor('PURPLE')
+            
+        return message.channel.send({ embeds: [ embed ] })
     }
 }
 
