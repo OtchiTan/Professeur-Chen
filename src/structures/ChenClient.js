@@ -10,14 +10,6 @@ module.exports = class ChenClient extends AkairoClient {
                     repliedUser: false
                 },
                 partials: ['CHANNEL', 'GUILD_MEMBER', 'MESSAGE', 'REACTION', 'USER'],
-                presence: {
-                    status: 'online',
-                    activities: [{
-                        name:"Test",
-                        type:"WATCHING",
-                        url:"https://discord.gg/bDnG3rmNEA"
-                    }]
-                },
                 intents: 32767
             }
         )
@@ -25,7 +17,7 @@ module.exports = class ChenClient extends AkairoClient {
         this.commandHandler = new CommandHandler(this, {
             allowMention:true,
             prefix: config.prefix,
-            defaultCooldown:2000,
+            defaultCooldown:config.cooldown,
             directory: './commands/'
         })
 
