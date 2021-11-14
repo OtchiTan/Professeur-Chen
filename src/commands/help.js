@@ -1,4 +1,5 @@
 const { Command } = require('discord-akairo');
+const config = require('../utils/config')
 
 class Help extends Command {
     constructor() {
@@ -8,6 +9,7 @@ class Help extends Command {
     }
 
     exec(message) {
+        if (message.channel.id != config.commandChannel) return
         return message.reply('Sah, quel aide');
     }
 }

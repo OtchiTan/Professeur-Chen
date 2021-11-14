@@ -26,6 +26,7 @@ module.exports = class ChenClient extends AkairoClient {
         })
 
         this.commandHandler.useListenerHandler(this.listenerHandler)
+        
         this.listenerHandler.loadAll()
         this.commandHandler.loadAll()
     }

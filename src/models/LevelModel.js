@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const LevelModel = mongoose.model(
-    "professeur-chen",
+    "level",
     {
         uid: {
             type: String,
@@ -18,6 +18,14 @@ const LevelModel = mongoose.model(
         lastMessage: {
             type: Number,
             required : true
+        },
+        rank : {
+            type: Number,
+            require: true
+        },
+        totalXp: {
+            type: Number,
+            require:true
         }
     },
     "level"
