@@ -34,7 +34,7 @@ class TopXp extends Command {
             let embed = new MessageEmbed()
                 .setTitle(`__${user}__, vous êtes numéro #${senderData.rank}, avec un total de ${senderData.totalXp} xp`)
                 .setDescription('Voici le classement des 10 personnes les plus actives')
-                .setColor('DARK_PURPLE')
+                .setColor('#47f5ee')
                 .setFields(fields)
                 .setThumbnail('https://i.pinimg.com/originals/f7/b4/1b/f7b41b0b170d8765d7f6684497c7763a.png')
                 .setAuthor(

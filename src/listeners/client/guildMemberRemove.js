@@ -10,7 +10,7 @@ class GuildMemberRemoveListener extends Listener {
     }
 
     exec(member) {
-        return member.guild.channels.cache.get(config.greetings.channel).send(`**${member.user.tag}** s'est échappé ! Dommage...`)
+        return member.guild.channels.cache.get(config.greetings.goodbye).send(`**${member.user.tag}** s'est échappé ! Dommage...`)
     }
 }
 

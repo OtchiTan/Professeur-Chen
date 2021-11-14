@@ -16,7 +16,7 @@ class AddXp extends Command {
     exec(message, args) {
         if (message.channel.id != config.commandChannel) return
         if (this.hasAuthority(message)) {
-            if (args.userToAdd == null) return message.reply(`Veuillez précisez le joueur`)
+            if (args.userToAdd == null) return message.reply(`Veuillez précisez l'utilisateur`)
             if (args.xpToAdd == null) return message.reply(`Veuillez précisez l'xp à ajouter`)
 
             LevelModel.findOne({uid:args.userToAdd.id}, (err, docs) => {
@@ -25,7 +25,7 @@ class AddXp extends Command {
                 const newTotalXp = docs.totalXp + args.xpToAdd
                 LevelModel.updateOne({uid:args.userToAdd.id},{xp:newXp,totalXp:newTotalXp}, (err) => {
                     if (err) throw err
-                    return message.reply(`**${args.userToAdd.username}** à gagner **${args.xpToAdd}** points d'xp. Il est maintenant à **${newXp}** points d'xp`)
+                    return message.reply(`**${args.userToAdd.username}** à gagner **${args.xpToAdd}** points d'xp. Iel est maintenant à **${newXp}** points d'xp`)
                 })
             })
         } else {
