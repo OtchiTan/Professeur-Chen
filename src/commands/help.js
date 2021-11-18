@@ -10,7 +10,11 @@ class Help extends Command {
     }
 
     exec(message) {
-        if (message.channel.id != config.commandChannel) return
+        var badChannel = true
+        for (var channelBan of config.commandChannel) {
+            if (badChannel && message.channel.id === channelBan) badChannel = false
+        }
+        if (badChannel) return
         if (this.hasAuthority(message)) {
             let embed = new MessageEmbed()
                     .setTitle(`Liste des commandes`)

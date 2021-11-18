@@ -21,6 +21,17 @@ class MessageCreateListener extends Listener {
         for (var channel of config.level.channelException) {
             if (message.channel.id === channel) return
         }
+        
+        var user = message.member.roles
+        var iteratorRoles = user.cache
+        var arrayRoles = [...iteratorRoles].map(([name, value]) => ({ name, value }))
+
+        for (var roleBan of config.level.roleException) {
+            for (var rolePosseded of arrayRoles) {
+                if (roleBan === rolePosseded.value.id) console.log("Role ban")
+            }
+        }
+        
 
         LevelModel.findOne({uid:message.author.id}, (err,docs) => {
             let today = new Date()
@@ -47,7 +58,7 @@ class MessageCreateListener extends Listener {
     }
 
     xpGain(uid,actualXp, actualLevel, totalXp, message, today) {
-        let xpToAdd = 15 + Math.floor((Math.random() * 11))
+        let xpToAdd = 5 + Math.floor((Math.random() * 11))
         let newXp = actualXp + xpToAdd
 
         LevelModel.updateOne({uid:uid}, {xp:newXp, lastMessage:today, totalXp:totalXp+xpToAdd}, (err) => { if (err) throw err})   

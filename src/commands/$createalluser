@@ -1,0 +1,58 @@
+const { Command } = require('discord-akairo');
+const { MessageEmbed } = require('discord.js');
+const { LevelModel } = require('../models/LevelModel');
+const config = require('../utils/config')
+
+class CreateAllUser extends Command {
+    constructor() {
+        super('createalluser', {
+           aliases: ['createalluser'] 
+        });
+    }
+
+    exec(message) {
+        var badChannel = true
+        for (var channelBan of config.commandChannel) {
+            if (badChannel && message.channel.id === channelBan) badChannel = false
+        }
+        if (badChannel) return
+
+        if (this.hasAuthority(message)) {
+            var iteratorUsers = message.guild.members.cache
+            var arrayUsers = [...iteratorUsers].map(([name, value]) => ({ name, value }))
+            let today = new Date()
+            for (var i = 0; i < arrayUsers.length; i++) {
+                LevelModel.create({
+                    uid:arrayUsers[i].value.user.id,
+                    level:0,
+                    xp:0,
+                    lastMessage:today,
+                    rank:i+1,
+                    totalXp:0
+                })
+            }
+        }
+    }
+
+    /*
+
+                    LevelModel.create({
+                        uid:message.author.id,
+                        level:0,
+                        xp:0,
+                        lastMessage:today.getTime(),
+                        rank:docs.length+1,
+                        totalXp:0
+                    })
+    */
+
+    hasAuthority(message){
+        var hasAuthority = false
+        for (var roleId of config.adminRoles) {
+            if (message.member.roles.cache.some(r => r.id === roleId)) hasAuthority = true
+        }
+        return hasAuthority
+    }
+}
+
+module.exports = CreateAllUser;

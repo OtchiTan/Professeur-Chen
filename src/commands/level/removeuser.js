@@ -14,7 +14,11 @@ class RemoveUser extends Command {
     }
 
     exec(message, args) {
-        if (message.channel.id != config.commandChannel) return
+        var badChannel = true
+        for (var channelBan of config.commandChannel) {
+            if (badChannel && message.channel.id === channelBan) badChannel = false
+        }
+        if (badChannel) return
         if (args.uid !== null) {
             LevelModel.findOneAndRemove({uid:args.uid}, (err, docs) => {
                 if (err) throw err
