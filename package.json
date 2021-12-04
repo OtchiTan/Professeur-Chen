@@ -1,11 +1,11 @@
 {
   "name": "professeur-chen",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Professeur Chen",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/OtchiTan/Professeur-Chen#readme",
   "dependencies": {
-    "discord-akairo": "github:discord-akairo/discord-akairo",
+    "@discordjs/builders": "^0.8.2",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.24.0",
     "discord.js": "^13.3.1",
     "mongoose": "^6.0.12",
     "nodemon": "^2.0.15"

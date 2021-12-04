@@ -1,7 +1,7 @@
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
-const { LevelModel } = require('../models/LevelModel');
-const config = require('../utils/config')
+const { LevelModel } = require('../../models/LevelModel');
+const config = require('../../utils/config')
 
 class CreateAllUser extends Command {
     constructor() {

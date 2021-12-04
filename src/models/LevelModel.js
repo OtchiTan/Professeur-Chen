@@ -11,21 +11,21 @@ const LevelModel = mongoose.model(
             type: Number,
             required : true
         },
-        xp: {
-            type: Number,
-            required : true
-        },
         lastMessage: {
             type: Number,
             required : true
         },
-        rank : {
-            type: Number,
-            require: true
-        },
         totalXp: {
             type: Number,
             require:true
+        },
+        actualXp: {
+            type: Number,
+            require:true
+        },
+        username: {
+            type: String,
+            required : true
         }
     },
     "level"
