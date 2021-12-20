@@ -13,6 +13,13 @@ const client = new Client({intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_ME
 client.on('ready', () => {
     console.log("Bot ready !")
     require('./src/utils/dbConfig')
+    client.guilds.fetch(config.guildId)
+        .then(guild => { 
+            console.log("Guild Founded")
+            guild.members.fetch().then(members => {
+                console.log("Members founded");
+            })
+        })
 })
 
 commands = new Collection()
@@ -39,7 +46,7 @@ client.on('messageCreate', async message => {
                 if (docs !== null) {
                     const user = new User({uid:docs.uid,
                         totalXp:docs.totalXp,
-                        actualXp:docs.actualXp,
+                        xp:docs.xp,
                         lastMessage:docs.lastMessage,
                         level:docs.level,
                         guild:message.guild})
@@ -49,19 +56,10 @@ client.on('messageCreate', async message => {
                     user.xpGain(xpToAdd)
                 } else {
                     const today = new Date().getTime()
-                    LevelModel.create({uid:message.author.id,totalXp:0,level:0,actualXp:0, lastMessage:today, username:message.author.username}, (err) => { if (err) throw err })
+                    LevelModel.create({uid:message.author.id,totalXp:0,level:0,xp:0, lastMessage:today}, (err) => { if (err) throw err })
                 }
             })
         }
-    }
-})
-
-client.on('guildMemberUpdate', (oldUser, newUser) => {
-    var nickname = newUser.nickname
-    if (nickname !== null) {
-        LevelModel.findOneAndUpdate({uid:oldUser.user.id},{username:nickname}, (err) => {if (err) throw err})
-    } else {
-        LevelModel.findOneAndUpdate({uid:oldUser.user.id},{username:newUser.user.username}, (err) => {if (err) throw err})
     }
 })
 

@@ -23,7 +23,7 @@ module.exports = {
                 if (docs === null) return message.reply(`L'utilisateur n'existe pas en base de donnée`)
                 const user = new User({uid:docs.uid,
                     totalXp:docs.totalXp,
-                    actualXp:docs.actualXp,
+                    xp:docs.xp,
                     lastMessage:docs.lastMessage,
                     level:docs.level,
                     guild:message.guild})

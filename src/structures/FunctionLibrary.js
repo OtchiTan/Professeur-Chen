@@ -29,7 +29,7 @@ module.exports = {
             }
             var progressBar = ""
 
-            const percent = Math.round((docs.actualXp / xpMax) * 15)
+            const percent = Math.round((docs.xp / xpMax) * 15)
 
             for (var i = 0; i <= 15; i++) {
                 if (i <= percent) {
@@ -42,7 +42,7 @@ module.exports = {
             const author = message.guild.members.cache.get(docs.uid).user
 
             let embed = new MessageEmbed()
-                .setTitle(`${docs.actualXp} / ${xpMax} xp    |    #${rank}`)
+                .setTitle(`${docs.xp} / ${xpMax} xp    |    #${rank}`)
                 .setColor('#47f5ee')
                 .setDescription(`${progressBar} | Niveau ${docs.level}`)
                 .setThumbnail(author.avatarURL())

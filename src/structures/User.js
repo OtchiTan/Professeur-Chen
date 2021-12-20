@@ -5,7 +5,7 @@ class User {
     constructor(props) {
         this.uid = props.uid
         this.totalXp = props.totalXp
-        this.actualXp = props.actualXp
+        this.xp = props.xp
         this.lastMessage = new Date(props.lastMessage)
         this.level = props.level
         this.guild = props.guild
@@ -26,19 +26,19 @@ class User {
         if (this.canGainXp()) {
             const nextLevel = 5 * (Math.pow(this.level,2)) + (50 * this.level) + 100
             this.totalXp += xpToAdd
-            this.actualXp += xpToAdd
+            this.xp += xpToAdd
             this.lastMessage = new Date().getTime()
 
-            LevelModel.updateOne({uid:this.uid}, {lastMessage:this.lastMessage, totalXp:this.totalXp, actualXp:this.actualXp}, (err) => { if (err) throw err})
+            LevelModel.updateOne({uid:this.uid}, {lastMessage:this.lastMessage, totalXp:this.totalXp, xp:this.xp}, (err) => { if (err) throw err})
 
-            if (this.actualXp >= nextLevel) this.levelUp()
+            if (this.xp >= nextLevel) this.levelUp()
         }
     }
 
     levelUp() {
         this.level++
-        this.actualXp = 0
-        LevelModel.findOneAndUpdate({uid:this.uid},{level:this.level, actualXp:this.actualXp}, (err) => {
+        this.xp = 0
+        LevelModel.findOneAndUpdate({uid:this.uid},{level:this.level, xp:this.xp}, (err) => {
             if (err) throw err
             const author = this.guild.members.cache.get(this.uid)
             this.guild.channels.cache.get(config.level.channelAnnouncement).send(`${author} s'approche du titre de meilleur dresseur Pokémon ! Tu as ${this.level} badges à ton actif !`)
@@ -63,14 +63,17 @@ class User {
     
     setLevel(newLevel) {
         this.level = newLevel
-        this.actualXp = 0
+        this.xp = 0
         if (newLevel > 0) {
-            this.totalXp = 5 * (Math.pow(newLevel-1,2)) + (50 * newLevel-1) + 100            
+            this.totalXp = 0
+            for (var i = 0; i <= this.level; i++) {
+                this.totalXp += 5 * (i * i) + (50 * i) + 100
+            }     
         } else {
             this.totalXp = 0            
         }
 
-        LevelModel.findOneAndUpdate({uid:this.uid},{level:this.level,actualXp:this.actualXp,totalXp:this.totalXp}, (err) => {
+        LevelModel.findOneAndUpdate({uid:this.uid},{level:this.level,xp:this.xp,totalXp:this.totalXp}, (err) => {
             if (err) throw err
         })
     }

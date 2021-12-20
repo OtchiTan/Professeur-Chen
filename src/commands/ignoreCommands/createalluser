@@ -1,3 +1,16 @@
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const FunctionLibrary = require('../structures/FunctionLibrary')
+
+module.exports = {
+    data: new SlashCommandBuilder()
+            .setName(``)
+            .setDescription(``),
+
+    async exec(message) {
+        
+    }
+}
+/*
 const { Command } = require('discord-akairo');
 const { MessageEmbed } = require('discord.js');
 const { LevelModel } = require('../../models/LevelModel');
@@ -44,7 +57,6 @@ class CreateAllUser extends Command {
                         rank:docs.length+1,
                         totalXp:0
                     })
-    */
 
     hasAuthority(message){
         var hasAuthority = false
@@ -55,4 +67,4 @@ class CreateAllUser extends Command {
     }
 }
 
-module.exports = CreateAllUser;
+module.exports = CreateAllUser;*/

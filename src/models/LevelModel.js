@@ -19,7 +19,7 @@ const LevelModel = mongoose.model(
             type: Number,
             require:true
         },
-        actualXp: {
+        xp: {
             type: Number,
             require:true
         },

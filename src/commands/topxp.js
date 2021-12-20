@@ -21,10 +21,19 @@ module.exports = {
             var fields = []
             for (var i = 0; i < 10; i++) {
                 if (typeof docs[i] !== 'undefined') {
-                    fields.push({
-                        name:`${docs[i].username} | ${docs[i].totalXp} xp total`,
-                        value:`#${i+1}`,
-                        inline:false})
+                    const user = message.guild.members.cache.get(docs[i].uid)
+                    if (typeof user !== 'undefined') {
+                        const username = user.user.username
+                        fields.push({
+                            name:`${username} | ${docs[i].totalXp} xp total`,
+                            value:`#${i+1}`,
+                            inline:false})
+                    } else {
+                        fields.push({
+                            name:`${docs[i].uid} | ${docs[i].totalXp} xp total`,
+                            value:`#${i+1}`,
+                            inline:false})
+                    }
                 }
             }
             var senderData = docs.find(user => user.uid === message.author.id)

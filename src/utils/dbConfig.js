@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const env = require('./env.js')
 
 mongoose.connect(
-    `mongodb+srv://${env.dbLogin}:${env.dbPassword}@${env.dbAdress}/test`,
+    `mongodb+srv://${env.dbLogin}:${env.dbPassword}@${env.dbAdress}/professeur-chen`,
     { useNewUrlParser: true, useUnifiedTopology: true},
     (err) => {
         if (!err) 
